@@ -271,7 +271,6 @@
     select("#prefixe").value = prefixe;
   }
 
-  // Attach event listener to the country select element
   window.addEventListener('load', () => {
     const paysSelect = select("#pays");
     if (paysSelect) {
@@ -279,6 +278,39 @@
     }
   });
 
-  
 
+
+    /**
+   * en savoir plus pricing */
+   
+
+
+  function setupToggleContent() {
+    const buyBtns = document.querySelectorAll('.buy-btn');
+    const contentFulls = document.querySelectorAll('.content-full');
+    buyBtns.forEach((buyBtn, index) => {
+      let isExpanded = false;
+      const contentFull = contentFulls[index];
+      function toggleContent() {
+        if (isExpanded) {
+          contentFull.style.display = 'none';
+          buyBtn.textContent = 'Voir plus'; 
+          buyBtn.closest('.box').style.maxHeight = '600px';
+        } else {
+          contentFull.style.display = 'block';
+          buyBtn.textContent = 'Voir moins'; 
+          buyBtn.closest('.box').style.maxHeight = '1100px'; // Exemple de hauteur complète
+        }
+        isExpanded = !isExpanded;
+      }
+      buyBtn.addEventListener('click', function(event) {
+        event.preventDefault(); 
+        toggleContent();
+      });
+    });
+  }
+  setupToggleContent();
+
+
+  
 })();
